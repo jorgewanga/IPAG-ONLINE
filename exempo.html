@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Separadores e Sub-separadores</title>
+    <style>
+        /* Estilo básico dos separadores */
+        .tabs {
+            display: flex;
+            cursor: pointer;
+        }
+
+        .tab {
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+        }
+
+        .tab:hover {
+            background-color: #ddd;
+        }
+
+        /* Estilo das abas ativas */
+        .active {
+            background-color: #ddd;
+            font-weight: bold;
+        }
+
+        /* Estilo das categorias que aparecem nas abas */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Separadores principais -->
+    <div class="tabs">
+        <div class="tab" onclick="showTabContent(event, 'tab1')">Separador 1</div>
+        <div class="tab" onclick="showTabContent(event, 'tab2')">Separador 2</div>
+    </div>
+
+    <!-- Conteúdo dos separadores -->
+    <div id="tab1" class="tab-content">
+        <h2>Categorias no Separador 1</h2>
+        <div class="tabs">
+            <div class="tab" onclick="showSubTabContent(event, 'subtab1')">Sub-separador 1</div>
+            <div class="tab" onclick="showSubTabContent(event, 'subtab2')">Sub-separador 2</div>
+        </div>
+        <div id="subtab1" class="tab-content">
+            <h3>Categoria 1: Alimentos</h3>
+            <p>Conteúdo sobre alimentos...</p>
+        </div>
+        <div id="subtab2" class="tab-content">
+            <h3>Categoria 2: Bebidas</h3>
+            <p>Conteúdo sobre bebidas...</p>
+        </div>
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <h2>Categorias no Separador 2</h2>
+        <div class="tabs">
+            <div class="tab" onclick="showSubTabContent(event, 'subtab3')">Sub-separador 3</div>
+            <div class="tab" onclick="showSubTabContent(event, 'subtab4')">Sub-separador 4</div>
+        </div>
+        <div id="subtab3" class="tab-content">
+            <h3>Categoria 3: Tecnologia</h3>
+            <p>Conteúdo sobre tecnologia...</p>
+        </div>
+        <div id="subtab4" class="tab-content">
+            <h3>Categoria 4: Ciências</h3>
+            <p>Conteúdo sobre ciências...</p>
+        </div>
+    </div>
+
+    <script>
+        function showTabContent(event, tabId) {
+            // Esconde todos os conteúdos de abas
+            let tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove a classe ativa de todos os separadores
+            let tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Exibe o conteúdo da aba selecionada
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showSubTabContent(event, subTabId) {
+            // Esconde todos os conteúdos de sub-separadores
+            let subTabContents = document.querySelectorAll('.tab-content');
+            subTabContents.forEach(content => content.classList.remove('active'));
+
+            // Exibe o conteúdo do sub-separador selecionado
+            document.getElementById(subTabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
